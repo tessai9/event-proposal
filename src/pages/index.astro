@@ -2,13 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Layout title="三宮.dev イベント投票ページ">
   <Navbar></Navbar>
-  <main>
-    <div>something event propotion</div>
+  <main class="p-3">
+    <section>
+      <Button>
+        <i class="fa fa-plus"></i>
+        イベント案を追加する
+      </Button>
+    </section>
+    <section id="proposals">
+      <div>something event propotion</div>
+    </section>
   </main>
+  <!-- Navbar componentが使いまわせそう -->
   <Footer></Footer>
 </Layout>
 
