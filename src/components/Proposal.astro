@@ -1,15 +1,23 @@
 ---
 export interface Props {
   title: string;
-  overview: string;
-  scheduled_at: Date;
+  uuid: string;
+  voteCount?: number;
 }
 
-const { title, overview, scheduled_at} = Astro.props;
+const { title, uuid, voteCount = 0} = Astro.props;
 ---
 
-<div class="proposal flex items-center">
-  <p class="proposal-title">{title}</p>
-  <p class="proposal-overview">{overview}</p>
-  <p class="proposal-scheduled_at">{scheduled_at}</p>
+<div class="proposal flex items-center p-4 mb-2" data-uuid={uuid}>
+  <p class="proposal-title mr-3">{title}</p>
+  <p class="proposal-vote-count">
+    <i class="bi bi-hand-thumbs-up text-black"></i>
+    {voteCount}
+  </p>
 </div>
+
+<style lang="scss">
+  .proposal {
+    background-color: #EEE;
+  }
+</style>
