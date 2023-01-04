@@ -3,19 +3,27 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+import Proposal from '../components/Proposal.astro';
+import { createClient } from '@supabase/supabase-js';
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+const supabase = createClient(import.meta.env.SUPABASE_PROJECT_URL, import.meta.env.SUPABASE_PUBLIC_KEY);
+const { data: proposals } = await supabase.from('proposals').select(`title, uuid`);
+console.log(proposals);
 ---
 
 <Layout title="三宮.dev イベント投票ページ">
   <Navbar></Navbar>
-  <main class="p-3">
+  <main class="px-[60px] pt-[30px]">
     <section>
       <Button>
-        <i class="fa fa-plus"></i>
         イベント案を追加する
       </Button>
     </section>
-    <section id="proposals">
-      <div>something event propotion</div>
+    <section id="proposals" class="mt-4">
+      {proposals?.map(proposal => (
+        <Proposal title={proposal.title} uuid={proposal.uuid}></Proposal>
+      ))}
     </section>
   </main>
   <!-- Navbar componentが使いまわせそう -->
