@@ -1,0 +1,15 @@
+---
+export interface Props {
+  title: string;
+  overview: string;
+  scheduled_at: Date;
+}
+
+const { title, overview, scheduled_at} = Astro.props;
+---
+
+<div class="proposal flex items-center">
+  <p class="proposal-title">{title}</p>
+  <p class="proposal-overview">{overview}</p>
+  <p class="proposal-scheduled_at">{scheduled_at}</p>
+</div>
