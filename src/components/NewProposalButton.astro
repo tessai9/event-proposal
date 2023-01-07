@@ -1,0 +1,25 @@
+---
+import NewProposalModal from '../components/NewProposalModal.astro';
+---
+
+<button class="btn rounded-full p-3 new-proposal-button">
+  イベント案を追加する
+</button>
+<NewProposalModal></NewProposalModal>
+
+<style is:inline lang="scss">
+  .btn {
+    background-color: white;
+    border: 1px solid;
+  }
+</style>
+
+<script>
+  const newProposalButtons = document.querySelectorAll('.new-proposal-button');
+  const newProposalModal = <HTMLDialogElement>document.querySelector('.new-proposal-modal');
+  newProposalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      newProposalModal.showModal();
+    })
+  });
+</script>

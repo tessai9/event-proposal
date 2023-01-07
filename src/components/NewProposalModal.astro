@@ -1,0 +1,29 @@
+---
+---
+
+<dialog class="new-proposal-modal">
+  <div class="modal-header">
+    <h5>新しくイベント案を追加します</h5>
+    <button aria-label="閉じる"></button>
+  </div>
+  <div class="modal-body">
+    <form method="dialog" class="flex flex-col">
+      <input type="text" name="title" placeholder="イベントのタイトル" class="border p-2">
+      <textarea name="overview" cols="30" rows="10" class="border p-2 mt-2" placeholder="イベント概要"></textarea>
+      <hr>
+      <div class="flex justify-between mt-3">
+        <button class="block border border-gray-500 rounded p-2" value="cancel">キャンセル</button>
+        <button class="block bg-sky-300 rounded p-2" id="submitBtn" value="default">提案する</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<style lang="scss">
+  .new-proposal-modal::backdrop {
+    background-color: rgba($color: #000000, $alpha: 0.4);
+  }
+</style>
+
+<script>
+</script>
