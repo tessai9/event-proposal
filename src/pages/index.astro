@@ -7,8 +7,8 @@ import Proposal from '../components/Proposal.astro';
 import { createClient } from '@supabase/supabase-js';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const supabase = createClient(import.meta.env.SUPABASE_PROJECT_URL, import.meta.env.SUPABASE_PUBLIC_KEY);
-const { data: proposals } = await supabase.from('proposals').select(`title, uuid, votes(*)`);
+const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_PROJECT_URL, import.meta.env.PUBLIC_SUPABASE_PUBLIC_KEY);
+const { data: proposals } = await supabase.from('proposals').select(`id, title, uuid, votes(*)`).order('proposed_at', { ascending: false });
 ---
 
 <Layout title="三宮.dev イベント投票ページ">

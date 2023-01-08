@@ -26,4 +26,18 @@
 </style>
 
 <script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_PROJECT_URL, import.meta.env.PUBLIC_SUPABASE_PUBLIC_KEY);
+  const proposalModal = document.querySelector('.new-proposal-modal');
+  const submitBtn = proposalModal?.querySelector('#submitBtn');
+
+  submitBtn?.addEventListener('click', async () => {
+    const title = (proposalModal?.querySelector('input[name=title]') as HTMLInputElement).value;
+    const overview = (proposalModal?.querySelector('textarea[name=overview]') as HTMLInputElement).value;
+
+    await supabase.from('proposals').insert({ title: title, overview: overview });
+
+    location.reload();
+  });
 </script>
