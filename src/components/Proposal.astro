@@ -1,7 +1,4 @@
 ---
-import { isVoted } from '../storage';
-import VoteButton from './VoteButton.astro';
-
 export interface Props {
   title: string;
   uuid: string;
@@ -14,7 +11,7 @@ const { title, uuid, voteCount = 0} = Astro.props;
 <div class="proposal flex items-center p-4 mb-2" data-uuid={uuid}>
   <p class="proposal-title mr-3">{title}</p>
   <p class="proposal-vote-count">
-    <VoteButton voted={isVoted(uuid)}></VoteButton>
+    <i class='bi vote-btn text-black text-lg' aria-label="投票する"></i>
     {voteCount}
   </p>
 </div>
@@ -22,12 +19,15 @@ const { title, uuid, voteCount = 0} = Astro.props;
 <style lang="scss">
   .proposal {
     background-color: #EEE;
+    .vote-btn {
+      cursor: pointer;
+    }
   }
 </style>
 
 <script>
   import { createClient } from '@supabase/supabase-js';
-  import { newVote } from '../storage';
+  import { newVote, isVoted } from '../storage';
 
   const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_PROJECT_URL, import.meta.env.PUBLIC_SUPABASE_PUBLIC_KEY);
   const proposals = document.querySelectorAll('.proposal');
@@ -36,11 +36,18 @@ const { title, uuid, voteCount = 0} = Astro.props;
     const proposalUuid = proposal.dataset.uuid;
     const voteBtn = proposal.querySelector('.vote-btn');
 
-    voteBtn?.addEventListener('click', async () => {
-      await supabase.from('votes').insert({ proposal_uuid: proposalUuid });
-      newVote(proposalUuid);
+    // 投票済
+    if(isVoted(proposalUuid)) {
+      voteBtn?.classList.add('bi-hand-thumbs-up-fill');
+    // 未投票
+    }else{
+      voteBtn?.classList.add('bi-hand-thumbs-up');
+      voteBtn?.addEventListener('click', async () => {
+        await supabase.from('votes').insert({ proposal_uuid: proposalUuid });
+        newVote(proposalUuid);
 
-      location.reload();
-    });
+        location.reload();
+      });
+    }
   });
 </script>

@@ -14,7 +14,6 @@ export function newVote(proposalUuid: string): void {
 
 // get voted proposal uuids
 function votedProposalUuids(): string[] {
-  console.log(localStorage.getItem(STORAGE_KEY_NAME));
   const votedUuids = localStorage.getItem(STORAGE_KEY_NAME) || JSON.stringify([]);
 
   return JSON.parse(votedUuids);
