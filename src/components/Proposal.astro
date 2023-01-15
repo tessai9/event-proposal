@@ -1,24 +1,35 @@
 ---
+import ProposalDescription from './ProposalDescription.astro';
+
 export interface Props {
   title: string;
+  overview: string;
   uuid: string;
   voteCount?: number;
 }
 
-const { title, uuid, voteCount = 0} = Astro.props;
+const { title, overview, uuid, voteCount = 0} = Astro.props;
 ---
 
-<div class="proposal flex items-center p-4 mb-2" data-uuid={uuid}>
-  <p class="proposal-title mr-3">{title}</p>
-  <p class="proposal-vote-count">
-    <i class='bi vote-btn text-black text-lg' aria-label="投票する"></i>
-    {voteCount}
-  </p>
+<div class="proposal mb-2" data-uuid={uuid}>
+  <!-- ヘッダー -->
+  <div class="proposal-header flex items-center p-4">
+    <p class="proposal-title mr-3">{title}</p>
+    <p class="proposal-vote-count">
+      <i class='bi vote-btn text-black text-lg' aria-label="投票する"></i>
+      {voteCount}
+    </p>
+  </div>
+  <!-- 概要 -->
+  {overview && <ProposalDescription description={overview}></ProposalDescription>}
 </div>
 
 <style lang="scss">
   .proposal {
-    background-color: #EEE;
+    .proposal-header {
+      background-color: #EEE;
+      font-size: 20px;
+    }
     .vote-btn {
       cursor: pointer;
     }

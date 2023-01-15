@@ -5,10 +5,15 @@ import Footer from '../components/Footer.astro';
 import NewProposalButton from '../components/NewProposalButton.astro';
 import Proposal from '../components/Proposal.astro';
 import { createClient } from '@supabase/supabase-js';
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_PROJECT_URL, import.meta.env.PUBLIC_SUPABASE_PUBLIC_KEY);
-const { data: proposals } = await supabase.from('proposals').select(`id, title, uuid, votes(*)`).order('proposed_at', { ascending: false });
+const { data: proposals } =
+  await supabase
+  .from('proposals')
+  .select(`id, title, overview, uuid, votes(id)`)
+  .is('archived_at', null)
+  .order('votes_count', { ascending: false })
+  .order('proposed_at', { ascending: false });
 ---
 
 <Layout title="三宮.dev イベント投票ページ">
@@ -21,7 +26,7 @@ const { data: proposals } = await supabase.from('proposals').select(`id, title, 
     </section>
     <section id="proposals" class="mt-4">
       {proposals?.map(proposal => (
-        <Proposal title={proposal.title} uuid={proposal.uuid} voteCount={proposal.votes.length}></Proposal>
+        <Proposal title={proposal.title} overview={proposal.overview} uuid={proposal.uuid} voteCount={proposal.votes.length}></Proposal>
       ))}
     </section>
   </main>

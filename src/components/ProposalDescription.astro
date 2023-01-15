@@ -1,0 +1,16 @@
+---
+export interface Props {
+  description: string;
+}
+
+const { description = '' } = Astro.props;
+---
+
+<div class="proposal-description border p-4">{description}</div>
+
+<style lang="scss">
+  .proposal-description {
+    font-size: 16px;
+    white-space: pre-wrap;
+  }
+</style>
