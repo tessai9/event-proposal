@@ -16,10 +16,10 @@ import NewProposalModal from '../components/NewProposalModal.astro';
 
 <script>
   const newProposalButtons = document.querySelectorAll('.new-proposal-button');
-  const newProposalModal = <HTMLDialogElement>document.querySelector('.new-proposal-modal');
+  const newProposalModal = document.querySelector('.new-proposal-modal');
   newProposalButtons.forEach(button => {
     button.addEventListener('click', () => {
-      newProposalModal.showModal();
+      (newProposalModal as HTMLDialogElement).showModal();
     })
   });
 </script>
