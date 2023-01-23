@@ -13,10 +13,10 @@ const { title, overview, uuid, voteCount = 0} = Astro.props;
 
 <div class="proposal mb-2" data-uuid={uuid}>
   <!-- ヘッダー -->
-  <div class="proposal-header flex items-center p-4">
+  <div class="proposal-header flex items-center bg-gray-100 p-4">
     <p class="proposal-title mr-3">{title}</p>
     <p class="proposal-vote-count">
-      <i class='bi vote-btn text-black text-lg' aria-label="投票する"></i>
+      <i class='bi vote-btn text-cyan-700 text-lg' aria-label="投票する"></i>
       {voteCount}
     </p>
   </div>
@@ -27,7 +27,7 @@ const { title, overview, uuid, voteCount = 0} = Astro.props;
 <style lang="scss">
   .proposal {
     .proposal-header {
-      background-color: #FAFAFA;
+      // background-color: #FAFAFA;
       font-weight: bold;
       font-size: 16px;
       padding: 0.5rem 1rem;
