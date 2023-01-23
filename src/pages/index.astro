@@ -18,8 +18,13 @@ const { data: proposals } =
 
 <Layout title="三宮.dev イベント投票ページ">
   <Navbar></Navbar>
-  <main class="px-[60px] pt-[30px]">
-    <section>
+  <main class="px-[10px] sm:px-[60px] pt-[30px]">
+    <section id="site-header">
+      <p id="site-description" class="mb-4">
+        三宮.devのイベント提案・投票サイトへようこそ！<br>
+        開催して欲しいイベントがあれば、遠慮なく気軽に提案／投票していってください<br>
+        ※なお、一度投票すると取り消せませんのでご注意ください
+      </p>
       <NewProposalButton>
         イベント案を追加する
       </NewProposalButton>
@@ -34,8 +39,13 @@ const { data: proposals } =
   <Footer></Footer>
 </Layout>
 
-<style>
+<style lang="scss">
   main {
+    #site-header {
+      #site-description {
+        font-size: 14px;
+      }
+    }
     min-height: calc(100vh - 120px);
   }
 </style>
