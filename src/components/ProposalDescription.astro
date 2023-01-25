@@ -6,11 +6,12 @@ export interface Props {
 const { description = '' } = Astro.props;
 ---
 
-<div class="proposal-description border p-4">{description}</div>
+<div class="proposal-description hidden border p-4">{description}</div>
 
 <style lang="scss">
   .proposal-description {
     font-size: 14px;
     white-space: pre-wrap;
+    background-color: white;
   }
 </style>

@@ -19,6 +19,9 @@ const { title, overview, uuid, voteCount = 0} = Astro.props;
       <i class='bi vote-btn text-cyan-700 text-lg' aria-label="投票する"></i>
       {voteCount}
     </p>
+    <p class="detail-btn ml-auto">
+      <i class="bi bi-search"></i>
+    </p>
   </div>
   <!-- 概要 -->
   {overview && <ProposalDescription description={overview}></ProposalDescription>}
@@ -27,13 +30,12 @@ const { title, overview, uuid, voteCount = 0} = Astro.props;
 <style lang="scss">
   .proposal {
     .proposal-header {
-      // background-color: #FAFAFA;
       font-weight: bold;
       font-size: 16px;
       padding: 0.5rem 1rem;
-    }
-    .vote-btn {
-      cursor: pointer;
+      .detail-btn {
+        cursor: pointer;
+      }
     }
   }
 </style>
@@ -48,13 +50,21 @@ const { title, overview, uuid, voteCount = 0} = Astro.props;
   proposals.forEach(proposal => {
     const proposalUuid = proposal.dataset.uuid;
     const voteBtn = proposal.querySelector('.vote-btn');
+    const searchBtn = proposal.querySelector('.detail-btn');
+    const descriptionElm = proposal.querySelector('.proposal-description');
+
+    if(descriptionElm) {
+      searchBtn?.addEventListener('click', () => {
+        descriptionElm.classList.toggle('hidden');
+      });
+    }
 
     // 投票済
     if(isVoted(proposalUuid)) {
       voteBtn?.classList.add('bi-hand-thumbs-up-fill');
     // 未投票
     }else{
-      voteBtn?.classList.add('bi-hand-thumbs-up');
+      voteBtn?.classList.add('bi-hand-thumbs-up', 'cursor-pointer');
       voteBtn?.addEventListener('click', async () => {
         await supabase.from('votes').insert({ proposal_uuid: proposalUuid });
         newVote(proposalUuid);
