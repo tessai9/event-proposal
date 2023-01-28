@@ -1,50 +1,58 @@
-# Welcome to [Astro](https://astro.build)
+<p style="text-align: center">
+  <img src="./images/logo_c.png" width=300 />
+</p>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# イベント提案・投票サイト（Event Proposal）
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+[イベント提案・投票サイト](https://proposal.sannomiya.dev/)は、三宮.devで開催してほしい勉強会やイベントを誰でも提案・投票できるサイトです
 
+オープンソースとして管理されているので、誰でもプロジェクトに貢献できます  
+本プロジェクトへのコントリビュートは [コントリビュート](#コントリビュート) を参照してください
 
-## 🚀 Project Structure
+![screenshot](./images/screenshot.png)
 
-Inside of your Astro project, you'll see the following folders and files:
+# ドキュメント
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+本プロジェクトの仕様や設計については [Wiki](https://github.com/tessai9/event-proposal/wiki)を参照ください
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+# 開発の始め方
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. プロジェクトをfork
+1. リポジトリをclone
+    ```
+    $ git clone git@github.com:<username>/event-proposal.git
+    ```
+1. ディレクトリに移動
+    ```
+    $ cd event-proposal
+    ```
+1. パッケージをinstall
+    ```
+    $ npm install
+    ```
+1. アプリを実行
+    ```
+    $ npm run dev
+    ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+なお、supabaseへ接続するには`.env`に環境変数の設定が必要です
+- `PUBLIC_SUPABASE_PROJECT_URL`
+- `PUBLIC_SUPABASE_PUBLIC_KEY`
 
-## 🧞 Commands
+# コントリビュート
 
-All commands are run from the root of the project, from a terminal:
+## Issue
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
+不具合の報告や機能改善の提案など気軽に作成してください  
+issue内で方針を議論していきましょう
 
-## 👀 Want to learn more?
+## Pull Request
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+不具合の修正や機能追加、ドキュメントの修正などを行ったらPull Requestを作成してください  
+
+Pull Requestの作り方
+1. [開発の始め方](#開発の始め方) に沿って環境構築
+1. 修正を加えたbranchを作成し、Forkしたリポジトリにpush
+1. githubからPull Requestを作成
