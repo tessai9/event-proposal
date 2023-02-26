@@ -17,7 +17,9 @@ import NewProposalModal from '../components/NewProposalModal.astro';
 <script>
   const newProposalButtons = document.querySelectorAll('.new-proposal-button');
   const newProposalModal = document.querySelector('.new-proposal-modal');
+
   newProposalButtons.forEach(button => {
+    // 提案用のモーダルを表示する
     button.addEventListener('click', () => {
       (newProposalModal as HTMLDialogElement).showModal();
     })
