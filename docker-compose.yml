@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: /bin/sh -c "npm run dev"
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+  supabse-api:
+    image: supabase/postgres-meta:v0.60.7
+    environment:
+      PG_META_HOST: 0.0.0.0
+      PG_META_PORT: 8080
+      PG_META_DB_HOST: db
+      PG_META_DB_NAME: proposed_events
+      PG_META_DB_USER: postgres
+      PG_META_DB_PORT: 5432
+      PG_META_DB_PASSWORD: postgres
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  db:
+    image: supabase/postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    environment:
+      POSTGRES_DB: proposed_events
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  node_modules:
+  db_data:
