@@ -19,6 +19,7 @@
     "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
+    "npm-check-updates": "^16.14.17",
     "sass": "^1.57.0"
   }
 }
