@@ -37,6 +37,12 @@
     $ npm run dev
     ```
 
+# Local Supabase
+
+このアプリのバックエンドはSupabaseを使用しています  
+ローカルに環境を構築する場合はSupabase CLIを使用してください  
+使い方は[公式ドキュメント](https://supabase.com/docs/guides/cli/getting-started)を参照
+
 なお、supabaseへ接続するには`.env`に環境変数の設定が必要です
 - `PUBLIC_SUPABASE_PROJECT_URL`
 - `PUBLIC_SUPABASE_PUBLIC_KEY`
@@ -50,7 +56,7 @@ issue内で方針を議論していきましょう
 
 ## Pull Request
 
-不具合の修正や機能追加、ドキュメントの修正などを行ったらPull Requestを作成してください  
+不具合の修正や機能追加、ドキュメントの修正などを行ったらPull Requestを作成してください
 
 Pull Requestの作り方
 1. [開発の始め方](#開発の始め方) に沿って環境構築
